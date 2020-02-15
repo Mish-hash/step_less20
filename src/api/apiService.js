@@ -2,7 +2,7 @@ import axios from 'axios';
 import {apiUrl} from './baseUrl';
 
 function getAuthHeaders() {
-    return {'Authorization': 'Bearer' + localStorage.getItem('token')}
+    return {'Authorization': 'Bearer ' + localStorage.getItem('token')}
 }
 
 export const getAllUsersApi = () => axios.get(apiUrl + '/secret/allUsers');
