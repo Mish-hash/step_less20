@@ -1,7 +1,7 @@
 import ACTIONS from '../actions/actionTypes';
 
 const initialState = {
-    authData: null,
+    user: null,
     isLoginFatching: false,
     error: null,
 };
@@ -18,7 +18,7 @@ export default function (state = initialState, action) {
             return {
                 ...state,
                 isLoginFatching: false,
-                authData: action.authData,
+                user: action.authData.user,
             };
         case ACTIONS.LOGIN_ERROR:
             return {

@@ -1,24 +1,42 @@
 import React from 'react';
-import { Route } from 'react-router-dom';
-import {connect} from 'react-redux'
+import { Route, Redirect } from 'react-router-dom';
+import {connect} from 'react-redux';
+import {getCurrentUser} from '../../redux/actions/actionCreators';
 
-function PrivateRouter({component: Component, ...rest}) {
+function PrivateRouter({component: Component, user, isFetching, error, getCurrentUser, ...rest}) {
     return (
         <Route
             {...rest}
             render={(props) => {
-                return <Component {...props}/>
+                if(user) {
+                    return <Component {...props}/>
+                }
+                if(isFetching) {
+                    return 'Loading'
+                }
+                if(error) {
+                    return <Redirect to="/login"/>
+                }
+                
+                getCurrentUser();
+                
             }}
         />
     )
 }
 
 function mapStateToProps(store) {
-    return null
+    return {
+        user: store.authReducer.user,
+        isFetching: store.authReducer.isLoadinFetching,
+        error: store.authReducer.error,
+    };
 }
 
 function mapDispatchToProps(dispatch) {
-    return null
+    return {
+        getCurrentUser: () => dispatch(getCurrentUser()),
+    };
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(PrivateRouter)

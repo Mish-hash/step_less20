@@ -10,6 +10,7 @@ function* rootSaga() {
     yield takeLatest(ACTIONS.CREATE_USER, userSagas.createUserSaga);
 
     yield takeLatest(ACTIONS.LOGIN, authSagas.loginSaga);
+    yield takeLatest(ACTIONS.GET_CURRENT_USER, authSagas.getCurrentUsrSaga);
 }
 
 export default rootSaga;

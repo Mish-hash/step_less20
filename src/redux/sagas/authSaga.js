@@ -11,8 +11,18 @@ export function* loginSaga(action) {
         const {data} = yield api.loginApi(authData);
         const accessToken = data.accessToken;
         localStorage.setItem("token", accessToken);
-        history.push('/users');
         yield put({type: ACTIONS.LOGIN_RESPONSE, authData: data});
+        history.push('/users');
+    } catch (e) {
+        yield put({type: ACTIONS.LOGIN_ERROR, massage: 'Something went wrong! Try again later.'});
+    }
+}
+
+export function* getCurrentUsrSaga() {
+    yield put({type: ACTIONS.LOGIN_REQUEST});
+    try {
+        const {data} = yield api.getCurrentUsrApi();
+        yield put({type: ACTIONS.LOGIN_RESPONSE, authData: {user: data}});
     } catch (e) {
         yield put({type: ACTIONS.LOGIN_ERROR, massage: 'Something went wrong! Try again later.'});
     }

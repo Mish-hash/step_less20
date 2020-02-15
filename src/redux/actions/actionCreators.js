@@ -29,4 +29,8 @@ export const loginAction = (data) => ({
     data,
 });
 
+export const getCurrentUser = () => ({
+    type: actions.GET_CURRENT_USER,
+});
+
 //we have to use it in COMPONENTS
