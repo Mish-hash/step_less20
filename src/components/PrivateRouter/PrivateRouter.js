@@ -1,7 +1,8 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
+import {connect} from 'react-redux'
 
-export function PrivateRouter({component: Component, ...rest}) {
+function PrivateRouter({component: Component, ...rest}) {
     return (
         <Route
             {...rest}
@@ -11,3 +12,13 @@ export function PrivateRouter({component: Component, ...rest}) {
         />
     )
 }
+
+function mapStateToProps(store) {
+    return null
+}
+
+function mapDispatchToProps(dispatch) {
+    return null
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(PrivateRouter)
