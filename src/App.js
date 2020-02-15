@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import {
   Router,
   Switch,
-  Route,
   Link,
 } from "react-router-dom";
 
@@ -15,10 +14,17 @@ import { Provider } from 'react-redux';
 import configureStore from './redux/config';
 import {history} from './utils/history';
 import PrivateRouter from './components/PrivateRouter/PrivateRouter';
+import PrefetchRouter from './components/PrefetchRouter/PrefetchRouter'
 
 function App() {
 
   const [store] = useState(configureStore());
+
+  const logout = (e) => {
+    e.preventDefault();
+    localStorage.clear();
+    window.location.reload();
+  }
 
   return (
     <div className={styles.container}>
@@ -36,17 +42,18 @@ function App() {
                 <li>
                   <Link to="/login">Login</Link>
                 </li>
+                <li>
+                  <Link to="#" onClick={logout}>logout</Link>
+                </li>
               </ul>
             </nav>
   
           <Switch>
             <PrivateRouter exact path="/users" component={UsersPage}/>
-            <Route exact path="/users/:id" component={UserProfilePage}/>
-            <Route exact path="/">
-              <HomePage/>
-            </Route>
-            <Route exact path="/login" component={LoginPage}/>
-            <Route>NOT FAUND 404</Route>
+            <PrivateRouter exact path="/users/:id" component={UserProfilePage}/>
+            <PrefetchRouter prefetch exact path="/" component={HomePage}/>
+            <PrefetchRouter prefetch loggedInUserForbidden exact path="/login" component={LoginPage}/>
+            <PrefetchRouter>NOT FAUND 404</PrefetchRouter>
           </Switch>
         </div>
       </Router> 

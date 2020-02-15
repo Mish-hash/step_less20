@@ -15,7 +15,7 @@ function PrivateRouter({component: Component, user, isFetching, error, getCurren
                     return 'Loading'
                 }
                 if(error) {
-                    return <Redirect to="/login"/>
+                    return <Redirect to={'/login'}/>
                 }
                 
                 getCurrentUser();
