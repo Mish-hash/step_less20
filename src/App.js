@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import {
-  BrowserRouter as Router,
+  Router,
   Switch,
   Route,
   Link,
@@ -13,6 +13,8 @@ import UserProfilePage from './components/pages/UserProfilePage/UserProfilePage'
 import LoginPage from './components/pages/Login/LoginPage';
 import { Provider } from 'react-redux';
 import configureStore from './redux/config';
+import {history} from './utils/history';
+import { PrivateRouter } from './components/PrivateRouter/PrivateRouter';
 
 function App() {
 
@@ -21,7 +23,7 @@ function App() {
   return (
     <div className={styles.container}>
       <Provider store={store}>
-      <Router>
+      <Router history={history}>
           <div>
             <nav>
               <ul>
@@ -38,7 +40,7 @@ function App() {
             </nav>
   
           <Switch>
-            <Route exact path="/users" component={UsersPage}/>
+            <PrivateRouter exact path="/users" component={UsersPage}/>
             <Route exact path="/users/:id" component={UserProfilePage}/>
             <Route exact path="/">
               <HomePage/>
