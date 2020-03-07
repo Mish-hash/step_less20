@@ -28,6 +28,9 @@ export default {
     RESET: 'RESET',
     UPDATE_EVENT: 'UPDATE_EVENT',
 
+    FETCH_POSTS: 'FETCH_POSTS',
+    POSTS_RESPONSE: 'POSTS_RESPONSE',
+
 }
 
 //we use it in REDUCER, ACTION_CREATOR, SAGAS

@@ -33,4 +33,10 @@ export const getCurrentUser = () => ({
     type: actions.GET_CURRENT_USER,
 });
 
+export const fetchPosts = (itemsPerPage, page) => ({
+    type: actions.FETCH_POSTS,
+    itemsPerPage,
+    page,
+});
+
 //we have to use it in COMPONENTS

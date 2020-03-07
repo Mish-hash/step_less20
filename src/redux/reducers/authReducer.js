@@ -4,6 +4,8 @@ const initialState = {
     user: null,
     isLoginFatching: false,
     error: null,
+    posts: [],
+    totalCount: 0,
 };
 
 export default function (state = initialState, action) {
@@ -26,6 +28,12 @@ export default function (state = initialState, action) {
                 isLoginFatching: false,
                 authData: action.massage,
             };
+
+            case ACTIONS.POSTS_RESPONSE:
+                return {
+                    ...state,
+                    ...action,
+                };
         default: return state;
     }
 }

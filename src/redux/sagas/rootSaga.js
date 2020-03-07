@@ -11,6 +11,8 @@ function* rootSaga() {
 
     yield takeLatest(ACTIONS.LOGIN, authSagas.loginSaga);
     yield takeLatest(ACTIONS.GET_CURRENT_USER, authSagas.getCurrentUsrSaga);
+
+    yield takeLatest(ACTIONS.FETCH_POSTS, authSagas.fetchPostsSaga);
 }
 
 export default rootSaga;

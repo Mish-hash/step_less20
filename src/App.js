@@ -14,7 +14,9 @@ import { Provider } from 'react-redux';
 import configureStore from './redux/config';
 import {history} from './utils/history';
 import PrivateRouter from './components/PrivateRouter/PrivateRouter';
-import PrefetchRouter from './components/PrefetchRouter/PrefetchRouter'
+import PrefetchRouter from './components/PrefetchRouter/PrefetchRouter';
+import PostsPage from './components/pages/PostsPage/PostsPage';
+
 
 function App() {
 
@@ -53,6 +55,7 @@ function App() {
             <PrivateRouter exact path="/users/:id" component={UserProfilePage}/>
             <PrefetchRouter prefetch exact path="/" component={HomePage}/>
             <PrefetchRouter prefetch loggedInUserForbidden exact path="/login" component={LoginPage}/>
+            <PrefetchRouter prefetch exact path="/posts" component={PostsPage}/>
             <PrefetchRouter>NOT FAUND 404</PrefetchRouter>
           </Switch>
         </div>

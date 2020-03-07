@@ -27,3 +27,12 @@ export function* getCurrentUsrSaga() {
         yield put({type: ACTIONS.LOGIN_ERROR, massage: 'Something went wrong! Try again later.'});
     }
 }
+
+export function* fetchPostsSaga({itemsPerPage, page}) {
+    try {
+        const {data: {posts, totalCount}} = yield api.fetchPostsApi(itemsPerPage, page);
+        yield put({type: ACTIONS.POSTS_RESPONSE, posts:[], totalCount: 0});
+    } catch (e) {
+
+    }
+}
